@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AppLayout from "./components/layouts/AppLayout.jsx"
+import Home from './pages/Home.jsx';
+import Contact from './pages/Contact.jsx';
+import Movie from './pages/Movie.jsx';
+import Service from './pages/Service.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ErrorPage from './pages/ErrorPage.jsx';
+import { getMoviesData } from './api/GetAPIData.jsx';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const render = createBrowserRouter([
+    {
+      path: "/",
+      element: <AppLayout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "/dynamic-routing-in-react",
+          element: <Home />
+        },
+        {
+          path: "/dynamic-routing-in-react/contact",
+          element: <Contact />
+        },
+        {
+          path: "/dynamic-routing-in-react/movie",
+          element: <Movie />,
+          loader: getMoviesData,
+        },
+        {
+          path: "/dynamic-routing-in-react/service",
+          element: <Service />
+        },
+      ]
+    }
+  ]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <RouterProvider router={render} />
   )
 }
 
