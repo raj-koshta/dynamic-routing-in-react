@@ -33,7 +33,7 @@ const ErrorPage = () => {
                                     <p>the page you are looking for not avaible!</p>
 
                                     <NavLink onClick={handleGoBack} className="btn" style={{marginRight: "25px"}}>Back</NavLink>
-                                    <NavLink to="/loader-n-useloaderdata-in-react/" className="btn">Go to Home</NavLink>
+                                    <NavLink to="/dynamic-routing-in-react/" className="btn">Go to Home</NavLink>
                                 </div>
                             </div>
                         </div>

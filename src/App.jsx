@@ -8,6 +8,8 @@ import Service from './pages/Service.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorPage from './pages/ErrorPage.jsx';
 import { getMoviesData } from './api/GetAPIData.jsx';
+import MovieDetails from './components/UI/MovieDetails.jsx';
+import { getMoviesDetails } from './api/GetMovieDetails.jsx';
 
 const App = () => {
 
@@ -29,6 +31,11 @@ const App = () => {
           path: "/dynamic-routing-in-react/movie",
           element: <Movie />,
           loader: getMoviesData,
+        },
+        {
+          path: "/dynamic-routing-in-react/movie/:movieID",
+          element: <MovieDetails />,
+          loader: getMoviesDetails,
         },
         {
           path: "/dynamic-routing-in-react/service",
